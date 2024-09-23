@@ -1,5 +1,6 @@
 package com.example.mylibrary.controller;
 
+import com.example.mylibrary.DTO.RequestDto.BookRequestDto;
 import com.example.mylibrary.DTO.ResponsDto.GetAllBookResponseDto;
 import com.example.mylibrary.DTO.ResponsDto.GetAllStudentResponseDto;
 import com.example.mylibrary.entity.Book;
@@ -17,18 +18,22 @@ public class BookController {
     @Autowired
     BookService bookService;
 
+//    @PostMapping("/add")
+//    public String addBook(@RequestBody Book book) throws Exception{
+//        return bookService.addBook(book);
+//    }
     @PostMapping("/add")
-    public String addBook(@RequestBody Book book) throws Exception{
-        return bookService.addBook(book);
+    public String addBook(@RequestBody BookRequestDto bookRequestDto) throws Exception {
+        return bookService.addBook(bookRequestDto);
     }
 
     // find all the books
 
-//    @GetMapping("/all")
-//    public ResponseEntity<List<GetAllBookResponseDto>> getAllBooks() {
-//        List<GetAllStudentResponseDto> books = bookService.getAllStudents();
-//        return ResponseEntity.ok(books);
-//    }
+    @GetMapping("/all")
+    public ResponseEntity<List<GetAllBookResponseDto>> getAllBooks() {
+        List<GetAllBookResponseDto> books = bookService.getAllBooks();
+        return ResponseEntity.ok(books);
+    }
 
 
     // find all the books of a particular authorId

@@ -1,5 +1,6 @@
 package com.example.mylibrary.controller;
 
+import com.example.mylibrary.DTO.RequestDto.AuthorRequestDto;
 import com.example.mylibrary.DTO.ResponsDto.AuthorResponseDto;
 import com.example.mylibrary.DTO.ResponsDto.GetAllAuthorResponseDto;
 import com.example.mylibrary.DTO.ResponsDto.GetAllStudentResponseDto;
@@ -16,9 +17,14 @@ import java.util.List;
 public class AuthorController {
     @Autowired
     AuthorService authorService;
+//    @PostMapping("add")
+//    public String addAuthor(@RequestBody Author author){
+//        return authorService.addAuthor(author);
+//    }
     @PostMapping("add")
-    public String addAuthor(@RequestBody Author author){
-        return authorService.addAuthor(author);
+    public String addAuthor(@RequestBody AuthorRequestDto authorRequestDto){
+
+        return authorService.addAuthor(authorRequestDto);
     }
 
     @GetMapping("/get_by_email")
@@ -27,12 +33,12 @@ public class AuthorController {
         return authorService.getByEmail(email);
     }
 
-//    @GetMapping("/all")
-//    public ResponseEntity<List<GetAllAuthorResponseDto>> getAllAuthors() {
-//        // The service should return a list directly.
-//        List<GetAllAuthorResponseDto> authors = (List<au>) authorService.getAllAuthors();
-//        return ResponseEntity.ok(authors);
-//    }
+    @GetMapping("/all")
+    public ResponseEntity<List<GetAllAuthorResponseDto>> getAllAuthors() {
+        // The service should return a list directly.
+        List<GetAllAuthorResponseDto> authors =  authorService.getAllAuthors();
+        return ResponseEntity.ok(authors);
+    }
 
 
 
